@@ -1,0 +1,4 @@
+Django>=4.1.0,<4.2.0
+python-decouple
+psycopg2-binary  # Reemplazar psycopg2 con psycopg2-binary aquí
+gunicorn

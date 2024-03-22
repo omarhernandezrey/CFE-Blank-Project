@@ -1,0 +1,39 @@
+# Docker compose: Su funcion es trabajar como una herramienta para definir
+# y administrar aplicaciones multicontenedor. En pocas palabras, nos
+# permite agrupar varios contenedores relacionados en una única
+# configuración,] lo cual se traduce en una simplificación de su gestión.
+# Beneficios de Docker Compose.
+# 1. Definición de servicios
+# 2. Gestión simplificada
+# 3. Manejo de dependencias
+# 4. Redes internas
+# 5. Volúmenes compartidos
+# 6. Portabilidad
+# Ejemplo de archivo docker-compose.yml
+version: '3.9'
+services:
+    db:
+        image: postgres
+        restart: always
+        ports:
+            - 5432:5432
+        volumes:
+            - postgresdb_data:/var/lib/postgresql/data/
+        env_file:
+            - src/.env
+    redis:
+        image: redis
+        restart: always
+        ports:
+            - 6379:6379
+        volumes:
+            - redis_data:/data
+        entrypoint: redis-server --appendonly yes
+
+volumes:
+    postgresdb_data:
+    redis_data:
+
+networks:
+  default:
+    name: cfe_blank_network
